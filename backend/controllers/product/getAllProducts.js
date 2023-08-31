@@ -2,7 +2,7 @@ const { Products } = require('../../models');
 const { RESPONSE_STATUSES } = require('../../constants');
 
 module.exports = {
-  async getAllOptions(req, res) {
+  async getAllProducts(req, res) {
     try {
       const allProducts = await Products.findAll();
       return res

@@ -2,7 +2,7 @@ const { Products } = require('../../models');
 const { RESPONSE_STATUSES } = require('../../constants');
 
 module.exports = {
-  async addOptions(req, res) {
+  async addProduct(req, res) {
     try {
       const {
         body: {
@@ -28,7 +28,7 @@ module.exports = {
 
       return res
         .status(RESPONSE_STATUSES.CREATED)
-        .send(newProduct);
+        .send(newProduct)
     } catch (error) {
       return res
         .status(RESPONSE_STATUSES.INTERNAL_SERVER_ERROR)

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  import OptionsPage from './components/OptionsPage.vue'
+import { RouterView } from "vue-router";
 </script>
 
 <template>
-  <options-page />
+  <router-view />
 </template>
 
 <style scoped>

@@ -2,7 +2,7 @@ const { Products } = require('../../models');
 const { RESPONSE_STATUSES } = require('../../constants');
 
 module.exports = {
-  async getOption(req, res) {
+  async getProduct(req, res) {
     try {
       const { params: { id } } = req;
 

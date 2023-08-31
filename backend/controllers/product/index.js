@@ -1,9 +1,9 @@
-const { getAllOptions } = require('./getAllOptions');
-const { getOption } = require('./getOption');
-const { addOptions } = require('./addOptions');
+const { getAllProducts } = require('./getAllProducts');
+const { getProduct } = require('./getProduct');
+const { addProduct } = require('./addProduct');
 
 module.exports = {
-  getAllOptions,
-  getOption,
-  addOptions,
+  getAllProducts,
+  getProduct,
+  addProduct,
 };
