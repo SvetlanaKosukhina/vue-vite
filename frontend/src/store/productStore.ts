@@ -1,4 +1,4 @@
-import { onMounted, reactive } from "vue";
+import { computed, reactive } from "vue";
 import { defineStore } from "pinia";
 
 import api from "../api";
@@ -18,10 +18,10 @@ export const useProductStore = defineStore("productStore", () => {
       state.optionsArr = data;
     } catch (err: unknown) {
       state.error.push(err);
-    } finally {
       setTimeout(() => {
         state.error = [];
       }, 5000);
+    } finally {
       state.loading = false;
     }
   };
@@ -33,19 +33,25 @@ export const useProductStore = defineStore("productStore", () => {
       getAllProducts();
     } catch (err: unknown) {
       state.error.push(err);
-    } finally {
       setTimeout(() => {
         state.error = [];
       }, 5000);
+    } finally {
       state.loading = false;
     }
   };
-  onMounted(() => {
-    getAllProducts();
+
+  const bigSizeProductArr = computed(() => {
+    return state.optionsArr.filter((item: IOptions) => item.size === "Увеличенный")
+  });
+  const smallSizeProductArr = computed(() => {
+    return state.optionsArr.filter((item: IOptions) => item.size === "Стандартный")
   });
   return {
     state,
     getAllProducts,
     addProduct,
+    bigSizeProductArr,
+    smallSizeProductArr,
   };
 });

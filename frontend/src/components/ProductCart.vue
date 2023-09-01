@@ -10,7 +10,7 @@
       <div class="columns-item">
         <h4>Увеличенный размер</h4>
         <product-item
-          v-for="product in bigSizeProductArr"
+          v-for="product in productStore.bigSizeProductArr"
           :key="product.id"
           :product="product"
         />
@@ -18,7 +18,7 @@
       <div class="columns-item">
         <h4>Стандартный размер</h4>
         <product-item
-          v-for="product in smallSizeProductArr"
+          v-for="product in productStore.smallSizeProductArr"
           :key="product.id"
           :product="product"
         />
@@ -28,22 +28,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { useRouter } from "vue-router";
 
 import ProductItem from "../components/ProductItem.vue";
 import { useProductStore } from "../store/productStore";
-import { IOptions } from "../types/types";
 
 const router = useRouter();
 const productStore = useProductStore();
 
-const bigSizeProductArr = computed(() =>
-  productStore.state.optionsArr.filter((item: IOptions) => item.size === "Увеличенный")
-);
-const smallSizeProductArr = computed(() =>
-  productStore.state.optionsArr.filter((item: IOptions) => item.size === "Стандартный")
-);
 </script>
 
 <style scoped lang="sass">

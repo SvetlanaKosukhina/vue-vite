@@ -90,16 +90,18 @@ const options = reactive({
   count: "6",
 });
 
+
 const openSize = ref(false);
 const openCount = ref(false);
 
-const imgPath = computed(() =>
+const imgPath = computed(() => (
   options.size === "Стандартный"
-    ? "../../public/images/small.jpeg"
-    : "../../public/images/big.jpg"
-);
+  ? "../../public/images/small.jpeg"
+  : "../../public/images/big.jpg"
+))
 
-const selectSize = (event: Event) => {
+
+const selectSize = (event: Event) => { 
   const el = event.target as HTMLFormElement;
   options.size = el.textContent;
   openSize.value = !openSize.value;

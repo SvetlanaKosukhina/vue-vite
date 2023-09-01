@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type PropType, ref } from "vue";
+import { computed, ref, type PropType } from "vue";
 
 import { IOptions } from "../types/types";
 
@@ -75,6 +75,7 @@ const imgPath = computed(() =>
 );
 
 </script>
+
 <style scoped lang="sass">
 @mixin item-main
   border: 1px solid gray
