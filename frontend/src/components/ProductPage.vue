@@ -1,38 +1,40 @@
 <template>
   <div class="container">
-    <h2>Размер устройства : {{ options.size }} </h2>
+    <h2>Размер устройства : {{ options.size }}</h2>
     <h2>Колличество напитков : {{ options.count }}</h2>
     <div class="image">
-      <img :src="imgPath" alt="product">
+      <img :src="imgPath" alt="product" />
     </div>
-      <div class="parent">
-        <h3>Выберете размер устройства</h3>
-        <div @click="toggleSize" class="select">
-          {{options.size}}
-        </div>
-        <ul v-show="openSize" class="select-items">
-          <li @click="selectSize">Увеличенный</li>
-          <li @click="selectSize">Стандартный</li>
-        </ul>
+    <div class="parent">
+      <h3>Выберете размер устройства</h3>
+      <div @click="toggleSize" class="select">
+        {{ options.size }}
       </div>
-      <div class="parent">
-        <h3>Выберете колличество напитков</h3>
-        <div @click="toggleCount" class="select">
-          {{options.count}}
-        </div>
-        <ul v-show="openCount" class="select-items" v-for="count in countArr">
-          <li @click="selectCount">{{ count }}</li>
-        </ul>
+      <ul v-show="openSize" class="select-items">
+        <li @click="selectSize">Увеличенный</li>
+        <li @click="selectSize">Стандартный</li>
+      </ul>
+    </div>
+    <div class="parent">
+      <h3>Выберете колличество напитков</h3>
+      <div @click="toggleCount" class="select">
+        {{ options.count }}
       </div>
+      <ul v-show="openCount" class="select-items" v-for="count in countArr">
+        <li @click="selectCount">{{ count }}</li>
+      </ul>
+    </div>
     <div class="actions-button">
-      <button class="add-button" @click="productStore.addProduct(options)">Добавить в хранилище</button>
+      <button class="add-button" @click="productStore.addProduct(options)">
+        Добавить в хранилище
+      </button>
       <button @click="router.push('/cart')" class="cart">
         Корзина
         {{ productStore.state.optionsArr.length }}
       </button>
     </div>
     <div v-show="productStore.state.error" class="error-content">
-      <my-alert v-for="err in productStore.state.error ">
+      <my-alert v-for="err in productStore.state.error">
         {{ err }}
       </my-alert>
     </div>
@@ -40,41 +42,47 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, reactive, ref } from "vue";
-  import { useRouter } from "vue-router";
-  import { useProductStore } from "../store/productStore";
+import { computed, reactive, ref } from "vue";
+import { useRouter } from "vue-router";
 
-  const productStore = useProductStore()
-  const router = useRouter();
+import { useProductStore } from "../store/productStore";
 
-  const countArr = [6, 8, 12]
-  const options = reactive({
-    size: "Стандартный",
-    count: "6"
-  })
+const productStore = useProductStore();
+const router = useRouter();
 
-  const imgPath = computed(() => (
-   options.size === 'Стандартный' ? "../../public/small.jpeg" : "../../public/big.jpg"
-  ))
-  const openSize = ref(false);
-  const openCount = ref(false);
+const countArr = [6, 8, 12];
+const options = reactive({
+  size: "Стандартный",
+  count: "6",
+});
 
+const openSize = ref(false);
+const openCount = ref(false);
 
-  const selectSize = (event: Event) => {
-    const el = event.target as HTMLElement
-    options.size = el.textContent as string;
-    openSize.value = !openSize.value
-  }
-  const selectCount = (event: Event) => {
-    const el = event.target as HTMLElement
-    options.count = el.textContent  as string;
-    openCount.value = !openCount.value
-  }
+const imgPath = computed(() =>
+  options.size === "Стандартный"
+    ? "../../public/images/small.jpeg"
+    : "../../public/images/big.jpg"
+);
 
-  const toggleSize = () => { openSize.value = !openSize.value }
+const selectSize = (event: Event) => {
+  const el = event.target as HTMLFormElement;
+  options.size = el.textContent;
+  openSize.value = !openSize.value;
+};
+const selectCount = (event: Event) => {
+  const el = event.target as HTMLFormElement;
+  options.count = el.textContent;
+  openCount.value = !openCount.value;
+};
 
-  const toggleCount = () => { openCount.value = !openCount.value }
+const toggleSize = () => {
+  openSize.value = !openSize.value;
+};
 
+const toggleCount = () => {
+  openCount.value = !openCount.value;
+};
 </script>
 
 <style scoped lang="sass">
@@ -120,7 +128,7 @@ h3, h2
   height: 40px
   padding: 10px
   cursor: pointer
-  background:  95% / 10% no-repeat url("../../public/arrow.png")
+  background:  95% / 10% no-repeat url("../../public/images/arrow.png")
 .select-items
   position: relative
   @include item-main
@@ -146,7 +154,7 @@ h3, h2
   height: 40px
 
 .modal-message
-  margin-top: 20px  
+  margin-top: 20px
   height: 40px
   display: flex
   justify-content: center
@@ -159,12 +167,12 @@ h3, h2
   max-width: 500px
   display: flex
   justify-content: space-between
-  margin-top: 20px  
+  margin-top: 20px
 
 .cart
   padding: 0 20px
   text-align: left
-  background:  97% / 15% no-repeat url("../../public/cart.png"), white
+  background:  97% / 15% no-repeat url("../../public/images/cart.png"), white
 
 .error-content
   top: 20px

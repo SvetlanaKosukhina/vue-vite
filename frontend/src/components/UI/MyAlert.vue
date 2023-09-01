@@ -8,23 +8,21 @@
 
 <script lang="ts">
 export default {
-  name: 'MyAlert',
-}
+  name: "MyAlert",
+};
 </script>
 
-
 <style scoped lang="sass">
-.dialog 
+.dialog
   background: rgb(192, 83, 83)
   display: flex
   border-radius: 12px
   padding: 20px
   margin-bottom: 15px
 
-.content 
+.content
   margin: auto
   color: white
   min-height: 30px
   max-width: 200px
-
 </style>

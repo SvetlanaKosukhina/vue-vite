@@ -1,11 +1,11 @@
 export interface IOptions {
-  size: string,
-  count: string,
-  id: number,
+  size: string;
+  count: string;
+  id: number;
 }
 
 export interface IOptionsStoreState {
-  optionsArr: IOptions[],
-  loading: boolean
+  optionsArr: IOptions[];
+  loading: boolean;
   error: unknown[];
 }
