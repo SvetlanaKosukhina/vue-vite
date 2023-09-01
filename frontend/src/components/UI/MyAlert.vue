@@ -1,7 +1,7 @@
 <template>
   <div class="dialog">
     <div class="content">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

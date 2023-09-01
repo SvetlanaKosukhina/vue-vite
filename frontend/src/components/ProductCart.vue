@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <button @click="router.push('/')" class="button-back">
+    <button
+      class="button-back"
+      @click="router.push('/')"
+    >
       Вернуться на главную страницу
     </button>
     <div class="columns">
@@ -8,16 +11,16 @@
         <h4>Увеличенный размер</h4>
         <product-item
           v-for="product in bigSizeProductArr"
-          :product="product"
           :key="product.id"
+          :product="product"
         />
       </div>
       <div class="columns-item">
         <h4>Стандартный размер</h4>
         <product-item
           v-for="product in smallSizeProductArr"
-          :product="product"
           :key="product.id"
+          :product="product"
         />
       </div>
     </div>

@@ -1,22 +1,34 @@
 <template>
   <div class="product">
-    <img :src="imgPath" alt="product" />
+    <img
+      :src="imgPath"
+      alt="product"
+    >
     <div class="product-text">
       <span>Размер устройства : {{ product.size }} </span>
       <span>Колличество напитков : {{ product.count }}</span>
     </div>
     <div class="counter">
-      <button @click="decrement">-</button>
-      <p @click="selectCount" v-show="!openInput">{{ counter }}</p>
+      <button @click="decrement">
+        -
+      </button>
+      <p
+        v-show="!openInput"
+        @click="selectCount"
+      >
+        {{ counter }}
+      </p>
       <input
-        v-focus
-        @blur="saveCount"
-        type="number"
         v-if="openInput"
+        v-focus
+        type="number"
         :value="counter"
-        v-on:keyup.enter="saveCount"
-      />
-      <button @click="increment">+</button>
+        @blur="saveCount"
+        @keyup.enter="saveCount"
+      >
+      <button @click="increment">
+        +
+      </button>
     </div>
   </div>
 </template>
@@ -50,7 +62,7 @@ const selectCount = () => {
 
 const saveCount = (event: Event) => {
   const el = event.target as HTMLFormElement;
-  if (el.value > 0) {
+  if (el.value > 0 && el.value < 1000) {
     counter.value = el.value.replace(/^0+/, "");
     openInput.value = false;
   }

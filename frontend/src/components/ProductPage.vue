@@ -3,37 +3,71 @@
     <h2>Размер устройства : {{ options.size }}</h2>
     <h2>Колличество напитков : {{ options.count }}</h2>
     <div class="image">
-      <img :src="imgPath" alt="product" />
+      <img
+        :src="imgPath"
+        alt="product"
+      >
     </div>
     <div class="parent">
       <h3>Выберете размер устройства</h3>
-      <div @click="toggleSize" class="select">
+      <div
+        class="select"
+        @click="toggleSize"
+      >
         {{ options.size }}
       </div>
-      <ul v-show="openSize" class="select-items">
-        <li @click="selectSize">Увеличенный</li>
-        <li @click="selectSize">Стандартный</li>
+      <ul
+        v-show="openSize"
+        class="select-items"
+      >
+        <li @click="selectSize">
+          Увеличенный
+        </li>
+        <li @click="selectSize">
+          Стандартный
+        </li>
       </ul>
     </div>
     <div class="parent">
       <h3>Выберете колличество напитков</h3>
-      <div @click="toggleCount" class="select">
+      <div
+        class="select"
+        @click="toggleCount"
+      >
         {{ options.count }}
       </div>
-      <ul v-show="openCount" class="select-items" v-for="count in countArr">
-        <li @click="selectCount">{{ count }}</li>
+      <ul
+        v-show="openCount"
+        class="select-items"
+      >
+        <li
+          v-for="count in countArr"
+          :key="count"
+          @click="selectCount"
+        >
+          {{ count }}
+        </li>
       </ul>
     </div>
     <div class="actions-button">
-      <button class="add-button" @click="productStore.addProduct(options)">
+      <button
+        class="add-button"
+        @click="productStore.addProduct(options)"
+      >
         Добавить в хранилище
       </button>
-      <button @click="router.push('/cart')" class="cart">
+      <button
+        class="cart"
+        @click="router.push('/cart')"
+      >
         Корзина
         {{ productStore.state.optionsArr.length }}
       </button>
     </div>
-    <div v-show="productStore.state.error" class="error-content">
+    <div
+      v-show="productStore.state.error"
+      class="error-content"
+    >
       <my-alert v-for="err in productStore.state.error">
         {{ err }}
       </my-alert>
