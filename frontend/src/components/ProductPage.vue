@@ -20,12 +20,8 @@
         v-show="openSize"
         class="select-items"
       >
-        <li @click="selectSize">
-          Увеличенный
-        </li>
-        <li @click="selectSize">
-          Стандартный
-        </li>
+        <li @click="selectSize">Увеличенный</li>
+        <li @click="selectSize">Стандартный</li>
       </ul>
     </div>
     <div class="parent">
@@ -68,7 +64,10 @@
       v-show="productStore.state.error"
       class="error-content"
     >
-      <my-alert v-for="err in productStore.state.error">
+      <my-alert
+        v-for="(err, index) in productStore.state.error"
+        :key="index"
+      >
         {{ err }}
       </my-alert>
     </div>
@@ -95,11 +94,10 @@ const openSize = ref(false);
 const openCount = ref(false);
 
 const imgPath = computed(() => (
-  options.size === "Стандартный"
-  ? "../../public/images/small.jpeg"
-  : "../../public/images/big.jpg"
-))
-
+   options.size === 'Стандартный'
+   ? "/images/small.jpeg"
+   : "/images/big.jpg"
+));
 
 const selectSize = (event: Event) => { 
   const el = event.target as HTMLFormElement;
@@ -164,7 +162,7 @@ h3, h2
   height: 40px
   padding: 10px
   cursor: pointer
-  background:  95% / 10% no-repeat url("../../public/images/arrow.png")
+  background:  95% / 10% no-repeat url("/images/arrow.png")
 .select-items
   position: relative
   @include item-main
@@ -208,7 +206,7 @@ h3, h2
 .cart
   padding: 0 20px
   text-align: left
-  background:  97% / 15% no-repeat url("../../public/images/cart.png"), white
+  background:  97% / 15% no-repeat url("/images/cart.png"), white
 
 .error-content
   top: 20px

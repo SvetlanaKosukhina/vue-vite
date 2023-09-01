@@ -23,6 +23,5 @@ export default {
 .content
   margin: auto
   color: white
-  min-height: 30px
   max-width: 200px
 </style>

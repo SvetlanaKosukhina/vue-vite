@@ -6,8 +6,18 @@
     >
       Вернуться на главную страницу
     </button>
+    <div
+      v-if="!productStore.bigSizeProductArr.length
+        && !productStore.smallSizeProductArr.length"
+      class="empty-message"
+    >
+      В вашей корзине ничего нет
+    </div>
     <div class="columns">
-      <div class="columns-item">
+      <div
+        v-show="productStore.bigSizeProductArr.length"
+        class="columns-item"
+      >
         <h4>Увеличенный размер</h4>
         <product-item
           v-for="product in productStore.bigSizeProductArr"
@@ -15,7 +25,10 @@
           :product="product"
         />
       </div>
-      <div class="columns-item">
+      <div
+        v-show="productStore.smallSizeProductArr.length"
+        class="columns-item"
+      >
         <h4>Стандартный размер</h4>
         <product-item
           v-for="product in productStore.smallSizeProductArr"
@@ -65,9 +78,14 @@ const productStore = useProductStore();
     display: flex
     .columns-item
       padding: 20px
+
 .button-back
   @include item-main
   margin-left: 20px
+
 .button-back:hover
   @include hover-item
+
+.empty-message
+  margin: 20px
 </style>

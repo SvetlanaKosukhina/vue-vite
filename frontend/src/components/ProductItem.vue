@@ -70,8 +70,8 @@ const saveCount = (event: Event) => {
 
 const imgPath = computed(() =>
   props.product.size === "Стандартный"
-    ? "../../public/images/small.jpeg"
-    : "../../public/images/big.jpg"
+    ? "/images/small.jpeg"
+    : "/images/big.jpg"
 );
 
 </script>
